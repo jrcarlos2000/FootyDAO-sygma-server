@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  mongodb:
+    container_name: mongodb
+    restart: always
+    image: mongo
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - ./mongodb/:/docker-entrypoint-initdb.d/
+      - mongo-volume:/data/db
+    networks:
+      - db_network
+
+volumes:
+  mongo-volume:
+
+networks:
+  db_network:
+    driver: bridge
