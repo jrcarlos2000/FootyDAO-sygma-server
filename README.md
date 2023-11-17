@@ -1,4 +1,16 @@
 # FootyDAO-server
+
+## **Sigma Endpoint**
+
+### POST
+api/web3/collect-money - owner of the game
+```javascript
+// PARAMS
+{
+    "gameId" : "1"
+}
+```
+
 ## **Game API**
 ### POST
 api/game/add - ONLY ADMIN
