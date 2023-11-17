@@ -78,12 +78,9 @@ export const collectMoneyFromGame = async (req: any, res: any) => {
 
   const receipt = await tx.wait();
 
-  console.log(receipt);
-
   // get first param after selector
   const amount = receipt.logs[receipt.logs.length - 1].data.slice(0, 66);
 
-  console.log(amount);
   const assetTransfer = new EVMAssetTransfer();
   // @ts-ignore-next-line
   await assetTransfer.init(provider, Environment.TESTNET);
@@ -147,7 +144,10 @@ export const collectMoneyFromGame = async (req: any, res: any) => {
     if (dataResponse && dataResponse.status === "executed") {
       console.log("Transfer executed successfully");
       clearInterval(id);
-      res.status(200).send();
+      res.status(200).send({
+        status: dataResponse.status,
+        explorerUrl: dataResponse.explorerUrl,
+      });
     }
   }, 5000);
 };
