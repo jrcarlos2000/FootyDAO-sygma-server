@@ -10,4 +10,5 @@ export default (app: any) => {
     "/api/web3/distribute-rewards/:userStringArray/:totalAmount/:fanTokenId",
     controller.distributeRewards
   );
+  app.post("/api/web3/collect-money/:gameId", controller.collectMoneyFromGame);
 };
